@@ -20,7 +20,7 @@ type LatLngLiteral = google.maps.LatLngLiteral;
 // type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 type MapRefType = google.maps.Map;
-import { Driver, HeapItem } from "../types/global";
+import {HeapItem } from "../types/global";
 
 // TO-DO: Update location state and store in context for global access
 
@@ -52,27 +52,25 @@ const MapComp = () => {
     mapRef.current = map;
   }, []);
 
-  // // Create a ref to hold the render count.
+  // Create a ref to hold the render count.
   // const renderCount = useRef(0);
   // renderCount.current += 1;
 
-  // // console.log("Render: " + renderCount.current);
-  // const panViewToDriver = (id : Number) => {
-  //     mapRef.current?.panTo(drivers.);
-  // }
+  // console.log("Render: " + renderCount.current);
+
 
   useEffect(() => {
     driversRef.current = drivers;
   }, [drivers]);
 
-  //Make this smoother
+  // Make this smoother
   useEffect(() => {
     if (!driverInViewIndx) return;
 
     const intervalId = setInterval(() => {
       mapRef.current?.panTo(driversRef.current[driverInViewIndx].position);
-      console.log("Driver pos: ", driversRef.current[driverInViewIndx].position)
-    }, 1000);
+      // console.log("Driver pos: ", driversRef.current[driverInViewIndx].position)
+    }, 100);
 
     return () => clearInterval(intervalId);
   }, [driverInViewIndx]);
@@ -95,9 +93,10 @@ const MapComp = () => {
         <GoogleMap
           zoom={11}
           center={center}
-          mapContainerStyle={{ height: "100vh", width: "100%" }}
+          mapContainerStyle={{ height: "90vh", width: "100%" }}
           options={options}
           onLoad={onLoad}
+          onClick={() => setDriverInViewIndx(undefined)}
         >
           {driversShortList && (
             <div className="absolute w-[30vh] h-[60vh] bg-white left-10 top-30 p-[2vh] ">
@@ -110,7 +109,7 @@ const MapComp = () => {
               <div>
                 <h3>These Drivers are the closest to your location</h3>
               </div>
-              <ul className="my-10 h-1/2 flex flex-col justify-between">
+              <ul className="font-serif my-10 h-1/2 flex flex-col justify-between">
                 {driversShortList.map((driver, idx) => (
                   <div key={idx}>
                     <p>Id: {driver.id}</p>
