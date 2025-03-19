@@ -16,6 +16,23 @@ export default defineConfig({
           type: "image/svg",
           purpose: "any maskable"
         }]
+      },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: new RegExp('https://jsonplaceholder\\.typicode\\.com/posts/\\d+'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'testCache',
+              expiration: {
+                maxAgeSeconds: 60 *10 // <== 365 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+        ]
       }
     })
   ],
