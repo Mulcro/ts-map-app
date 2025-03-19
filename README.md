@@ -15,6 +15,6 @@ npm i
 ### Step 2
 
 ```bash
-npm run dev
+sh start.sh
 ```
 
