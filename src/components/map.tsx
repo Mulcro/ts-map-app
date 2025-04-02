@@ -14,7 +14,7 @@ import {
   MarkerClusterer,
   // Data,
 } from "@react-google-maps/api";
-import Places from "./places.tsx";
+// import Places from "./places.tsx";
 import LocationContext from "../context/LocationContext.tsx";
 type LatLngLiteral = google.maps.LatLngLiteral;
 // type DirectionsResult = google.maps.DirectionsResult;
@@ -78,22 +78,22 @@ const MapComp = () => {
   return (
     <div className="">
       {/* This will be the control menu comp */}
-      <div
+      {/* <div
         id="controls"
-        className="flex justify-center items-center left-0 right-0 mx-auto z-100 absolute top-[5%] w-[10vh] h-[5vh] bg-red-500"
+        className="flex justify-center items-center left-0 right-0 mx-auto z-10 absolute top-[8%] w-[10vh] h-[5vh] bg-red-500"
       >
         <Places
           setDriverShortList={(drivers: HeapItem[]) => {
             setDriverShortList(drivers);
           }}
         />
-      </div>
+      </div> */}
 
-      <div id="map" className="h-1vh w-full overflow-hidden">
+      <div id="map" className=" w-full overflow-hidden">
         <GoogleMap
           zoom={11}
           center={center}
-          mapContainerStyle={{ height: "90vh", width: "100%" }}
+          mapContainerStyle={{ height: "92vh", width: "100%" }}
           options={options}
           onLoad={onLoad}
           onClick={() => setDriverInViewIndx(undefined)}
@@ -101,7 +101,7 @@ const MapComp = () => {
           {driversShortList && (
             <div className="absolute w-[30vh] h-[60vh] bg-white left-10 top-30 p-[2vh] ">
               <div
-                className="font-bold absolute top-0 right-5     text-red-500"
+                className="font-bold absolute top-0 right-5 text-red-500"
                 onClick={() => setDriverShortList(undefined)}
               >
                 X

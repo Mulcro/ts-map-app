@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@googlemaps/markerclusterer": "^2.5.3",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
     "@reach/combobox": "^0.18.0",
     "@react-google-maps/api": "^2.20.6",
     "@tailwindcss/vite": "^4.0.7",
@@ -21,6 +23,7 @@
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.2.0",
+    "react-toastify": "^11.0.5",
     "serve": "^14.2.4",
     "socket.io-client": "^4.8.1",
     "use-places-autocomplete": "^4.0.1"
@@ -40,6 +43,7 @@
     "tailwindcss": "^4.0.14",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
-    "vite": "^6.1.0"
+    "vite": "^6.1.0",
+    "vite-plugin-pwa": "^0.21.2"
   }
 }

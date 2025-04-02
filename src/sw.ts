@@ -1,6 +1,6 @@
 import {cleanupOutdatedCaches, precacheAndRoute} from 'workbox-precaching';
 import { registerRoute, Route } from 'workbox-routing';
-import {CacheFirst, NetworkOnly} from "workbox-strategies";
+import {CacheFirst , NetworkOnly} from "workbox-strategies";
 import { BackgroundSyncPlugin } from "workbox-background-sync";
 
 declare let self: ServiceWorkerGlobalScope;
@@ -29,7 +29,7 @@ registerRoute(imageRoute)
 
 const fetchPosts = new Route(
     ({request}) => {
-        return request.url === "https://jsonplaceholder\\.typicode\\.com/posts/\\d+"
+        return request.url.includes("https://jsonplaceholder.typicode.com/posts")
     },
     new CacheFirst({
         cacheName: "api/fetch-posts"
@@ -47,9 +47,8 @@ const bgSyncPlugin = new BackgroundSyncPlugin("backgroundSyncQueue", {
   });
   
   const postRoute = new Route(
-    ({ request }) => {
-        // Example
-        // return request.url === import.meta.env.VITE_API_BASE_URL + "/task/create";
+    ({request}) => {
+        return request.url === "http://localhost:4000/users";
     },
     new NetworkOnly({
       plugins: [bgSyncPlugin],
@@ -58,14 +57,13 @@ const bgSyncPlugin = new BackgroundSyncPlugin("backgroundSyncQueue", {
   );
   registerRoute(postRoute);
   
-  const editRoute = new Route(
-    ({ request }) => {
-        // Example
-        // return request.url.includes(import.meta.env.VITE_API_BASE_URL + "/task");
-    },
-    new NetworkOnly({
-      plugins: [bgSyncPlugin],
-    }),
-    "PATCH"
-  );
-  registerRoute(editRoute);
+//   const editRoute = new Route(
+//     ({request}) => {
+//         return request.url.includes(import.meta.env.VITE_API_BASE_URL + "/users");
+//     },
+//     new NetworkOnly({
+//       plugins: [bgSyncPlugin],
+//     }),
+//     "PATCH"
+//   );
+//   registerRoute(editRoute);

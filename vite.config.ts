@@ -11,7 +11,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       devOptions:{
-        enabled: true
+        enabled: false
       },
       strategies: 'injectManifest',
       srcDir: "src",
